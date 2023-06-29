@@ -21,6 +21,7 @@ pub mod pallet {
 	use super::*;
 	use frame_support::pallet_prelude::*;
 	use frame_system::pallet_prelude::*;
+	use frame_support::traits::{Currency, Randomness};
 
 	#[pallet::pallet]
 	pub struct Pallet<T>(_);
@@ -32,6 +33,16 @@ pub mod pallet {
 		type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
 		/// Type representing the weight of this pallet
 		type WeightInfo: WeightInfo;
+
+		/// The Currency handler for the kitties pallet.
+		type Currency: Currency<Self::AccountId>;
+
+		/// The maximum amount of kitties a single account can own.
+		#[pallet::constant]
+		type MaxKittiesOwned: Get<u32>;
+
+		/// The type of Randomness we want to specify for this pallet.
+		type KittyRandomness: Randomness<Self::Hash, Self::BlockNumber>;
 	}
 
 	// The pallet's runtime storage items.
