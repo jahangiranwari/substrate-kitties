@@ -39,6 +39,7 @@ pub trait WeightInfo {
 	fn cause_error() -> Weight;
 	fn create_kitty() -> Weight;
 	fn transfer() -> Weight;
+	fn set_price() -> Weight;
 }
 
 /// Weights for pallet_template using the Substrate node and recommended hardware.
@@ -73,6 +74,10 @@ impl<T: frame_system::Config> WeightInfo for SubstrateWeight<T> {
 	fn transfer() -> Weight {
 		todo!()
 	}
+
+	fn set_price() -> Weight {
+		todo!()
+	}
 }
 
 // For backwards compatibility and tests
@@ -104,6 +109,10 @@ impl WeightInfo for () {
 	}
 
 	fn transfer() -> Weight {
+		todo!()
+	}
+
+	fn set_price() -> Weight {
 		todo!()
 	}
 }
