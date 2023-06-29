@@ -76,6 +76,24 @@ pub mod pallet {
 	// https://docs.substrate.io/main-docs/build/runtime-storage/#declaring-storage-items
 	pub type Something<T> = StorageValue<_, u32>;
 
+	/// Keeps track of the number of kitties in existence.
+	#[pallet::storage]
+	pub(super) type CountForKitties<T: Config> = StorageValue<_, u64, ValueQuery>;
+
+	/// Maps the kitty struct to the kitty DNA.
+	#[pallet::storage]
+	pub(super) type Kitties<T: Config> = StorageMap<_, Twox64Concat, [u8; 16], Kitty<T>>;
+
+	/// Track the kitties owned by each account.
+	#[pallet::storage]
+	pub(super) type KittiesOwned<T: Config> = StorageMap<
+		_,
+		Twox64Concat,
+		T::AccountId,
+		BoundedVec<[u8; 16], T::MaxKittiesOwned>,
+		ValueQuery,
+	>;
+
 	// Pallets use events to inform users when important changes are made.
 	// https://docs.substrate.io/main-docs/build/events-errors/
 	#[pallet::event]
