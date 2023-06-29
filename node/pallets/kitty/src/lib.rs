@@ -102,6 +102,9 @@ pub mod pallet {
 		/// Event documentation should end with an array that provides descriptive names for event
 		/// parameters. [something, who]
 		SomethingStored { something: u32, who: T::AccountId },
+
+		/// A new kitty was successfully created.
+		Created { kitty: [u8; 16], owner: T::AccountId },
 	}
 
 	// Errors inform users that something went wrong.
