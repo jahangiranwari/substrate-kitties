@@ -111,6 +111,13 @@ pub mod pallet {
 		NoneValue,
 		/// Errors should have helpful documentation associated with them.
 		StorageOverflow,
+
+		/// An account may only own `MaxKittiesOwned` kitties.
+		TooManyOwned,
+		/// This kitty already exists!
+		DuplicateKitty,
+		/// An overflow has occurred!
+		Overflow,
 	}
 
 	// Dispatchable functions allows users to interact with the pallet and invoke state changes.
