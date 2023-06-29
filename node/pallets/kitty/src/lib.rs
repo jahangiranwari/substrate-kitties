@@ -166,6 +166,23 @@ pub mod pallet {
 				},
 			}
 		}
+
+		/// Create a new unique kitty.
+		///
+		/// The actual kitty creation is done in the `mint()` function.
+		#[pallet::weight(0)]
+		pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
+			// Make sure the caller is from a signed origin
+			let sender = ensure_signed(origin)?;
+
+			// Generate unique DNA and Gender using a helper function
+			let (kitty_gen_dna, gender) = Self::gen_dna();
+
+			// Write new kitty to storage by calling helper function
+			Self::mint(&sender, kitty_gen_dna, gender)?;
+
+			Ok(())
+		}
 	}
 
 	// Pallet's internal functions.
