@@ -194,5 +194,36 @@ pub mod pallet {
 				(hash, Gender::Female)
 			}
 		}
+
+		// Mint a kitty
+		pub fn mint(
+			owner: &T::AccountId,
+			dna: [u8; 16],
+			gender: Gender,
+		) -> Result<[u8; 16], DispatchError> {
+			// Create a new object
+			let kitty = Kitty::<T> { dna, price: None, gender, owner: owner.clone() };
+
+			// Check if the kitty does not already exist in our storage map
+			ensure!(!Kitties::<T>::contains_key(&kitty.dna), Error::<T>::DuplicateKitty);
+
+			// Performs this operation first as it may fail
+			let count = CountForKitties::<T>::get();
+			let new_count = count.checked_add(1).ok_or(Error::<T>::Overflow)?;
+
+			// Append kitty to KittiesOwned
+			KittiesOwned::<T>::try_append(&owner, kitty.dna)
+				.map_err(|_| Error::<T>::TooManyOwned)?;
+
+			// Write new kitty to storage
+			Kitties::<T>::insert(kitty.dna, kitty);
+			CountForKitties::<T>::put(new_count);
+
+			// Deposit our "Created" event.
+			Self::deposit_event(Event::Created { kitty: dna, owner: owner.clone() });
+
+			// Returns the DNA of the new kitty if this succeeds
+			Ok(dna)
+		}
 	}
 }
