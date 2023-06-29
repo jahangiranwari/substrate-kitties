@@ -20,11 +20,34 @@ pub use weights::*;
 pub mod pallet {
 	use super::*;
 	use frame_support::pallet_prelude::*;
-	use frame_system::pallet_prelude::*;
 	use frame_support::traits::{Currency, Randomness};
+	use frame_system::pallet_prelude::*;
 
 	#[pallet::pallet]
 	pub struct Pallet<T>(_);
+
+	// Allows easy access our Pallet's `Balance` type. Comes from `Currency` interface.
+	type BalanceOf<T> =
+		<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
+
+	// The Gender type used in the `Kitty` struct
+	#[derive(Clone, Encode, Decode, PartialEq, Copy, RuntimeDebug, TypeInfo, MaxEncodedLen)]
+	pub enum Gender {
+		Male,
+		Female,
+	}
+
+	// Struct for holding kitty information
+	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo, MaxEncodedLen, Copy)]
+	#[scale_info(skip_type_params(T))]
+	pub struct Kitty<T: Config> {
+		// Using 16 bytes to represent a kitty DNA
+		pub dna: [u8; 16],
+		// `None` assumes not for sale
+		pub price: Option<BalanceOf<T>>,
+		pub gender: Gender,
+		pub owner: T::AccountId,
+	}
 
 	/// Configure the pallet by specifying the parameters and types on which it depends.
 	#[pallet::config]
