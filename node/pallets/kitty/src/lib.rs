@@ -170,7 +170,7 @@ pub mod pallet {
 		/// Create a new unique kitty.
 		///
 		/// The actual kitty creation is done in the `mint()` function.
-		#[pallet::weight(0)]
+		#[pallet::weight(T::WeightInfo::create_kitty())]
 		pub fn create_kitty(origin: OriginFor<T>) -> DispatchResult {
 			// Make sure the caller is from a signed origin
 			let sender = ensure_signed(origin)?;
