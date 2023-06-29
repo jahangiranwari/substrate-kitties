@@ -273,6 +273,15 @@ impl pallet_template::Config for Runtime {
 	type WeightInfo = pallet_template::weights::SubstrateWeight<Runtime>;
 }
 
+impl pallet_insecure_randomness_collective_flip::Config for Runtime {}
+
+impl pallet_kitty::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	type WeightInfo = pallet_kitty::weights::SubstrateWeight<Runtime>;
+	type Currency = Balances;
+	type MaxKittiesOwned = frame_support::pallet_prelude::ConstU32<100>;
+	type KittyRandomness = RandomnessCollectiveFlip;
+}
 
 impl pallet_utility::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
@@ -297,7 +306,10 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
-		Utility: pallet_utility
+		Utility: pallet_utility,
+		// RandomnessCollectiveFlip: pallet_randomness_collective_flip::{Module, Call, Storage},
+		RandomnessCollectiveFlip: pallet_insecure_randomness_collective_flip,
+		SubstrateKitties: pallet_kitty,
 	}
 );
 
