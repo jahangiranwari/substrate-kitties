@@ -135,4 +135,16 @@ yarn start
 
 Our local blockchain is now accessible at http://localhost:8000
 
+
+## References
+Here's a list of some references that were very helpful in understanding Substrate pallet development:
+  - [Substrate Collectables (Workshop)](https://sacha-l.github.io/substrate-collectables-workshop/#/workshop/start)
+  - [Substrate Collectables (Workshop) - Video](https://www.youtube.com/watch?v=NrG3co6UWEg)
+  - [Build the Substrate Kitties Chain](https://doc.deepernetwork.org/tutorials/v3/kitties/pt1/)
+  - [Substrate Knowledge Map](https://github.com/substrate-developer-hub/hackathon-knowledge-map#substrate-runtime-development)
+  - [Learn Rust syntax for Substrate](https://www.youtube.com/watch?v=VVU3Io2dACY)
+  - [Architecture and Rust libraries](https://docs.substrate.io/learn/architecture/)
+  - [Custom pallets](https://docs.substrate.io/build/custom-pallets/)
+  - [Deep dive into FRAME V2 pallet macros](https://www.youtube.com/watch?v=5pLHzKMCEtg)
+
 That's it. Happy chaining!
