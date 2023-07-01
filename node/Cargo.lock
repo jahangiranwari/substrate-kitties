@@ -4463,7 +4463,7 @@ dependencies = [
  "pallet-balances",
  "pallet-grandpa",
  "pallet-insecure-randomness-collective-flip",
- "pallet-kitty",
+ "pallet-kitties",
  "pallet-sudo",
  "pallet-template",
  "pallet-timestamp",
@@ -4764,7 +4764,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "pallet-kitty"
+name = "pallet-kitties"
 version = "4.0.0-dev"
 dependencies = [
  "frame-benchmarking",

@@ -103,7 +103,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
 	//   `spec_version`, and `authoring_version` are the same between Wasm and native.
 	// This value is set to 100 to notify Polkadot-JS App (https://polkadot.js.org/apps) to use
 	//   the compatible custom types.
-	spec_version: 116,
+	spec_version: 118,
 	impl_version: 1,
 	apis: RUNTIME_API_VERSIONS,
 	transaction_version: 1,
@@ -275,9 +275,9 @@ impl pallet_template::Config for Runtime {
 
 impl pallet_insecure_randomness_collective_flip::Config for Runtime {}
 
-impl pallet_kitty::Config for Runtime {
+impl pallet_kitties::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
-	type WeightInfo = pallet_kitty::weights::SubstrateWeight<Runtime>;
+	type WeightInfo = pallet_kitties::weights::SubstrateWeight<Runtime>;
 	type Currency = Balances;
 	type MaxKittiesOwned = frame_support::pallet_prelude::ConstU32<100>;
 	type KittyRandomness = RandomnessCollectiveFlip;
@@ -309,7 +309,7 @@ construct_runtime!(
 		Utility: pallet_utility,
 		// RandomnessCollectiveFlip: pallet_randomness_collective_flip::{Module, Call, Storage},
 		RandomnessCollectiveFlip: pallet_insecure_randomness_collective_flip,
-		Kitties: pallet_kitty,
+		Kitties: pallet_kitties,
 	}
 );
 
