@@ -30,9 +30,9 @@ export default function Kitties(props) {
     let unsub = null
 
     const asyncFetch = async () => {
-      unsub = await api.query.substrateKitties.countForKitties(async count => {
+      unsub = await api.query.kitties.countForKitties(async count => {
         // Fetch all kitty keys
-        const entries = await api.query.substrateKitties.kitties.entries()
+        const entries = await api.query.kitties.kitties.entries()
         const kittiesMap = entries.map(entry => {
           return {
             id: toHexString(entry[0].slice(-32)),
@@ -63,7 +63,7 @@ export default function Kitties(props) {
             type="SIGNED-TX"
             setStatus={setStatus}
             attrs={{
-              palletRpc: 'substrateKitties',
+              palletRpc: 'kitties',
               callable: 'createKitty',
               inputParams: [],
               paramFields: [],

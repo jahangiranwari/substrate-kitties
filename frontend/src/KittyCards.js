@@ -62,7 +62,7 @@ const TransferModal = props => {
           setStatus={setStatus}
           onClick={confirmAndClose}
           attrs={{
-            palletRpc: 'substrateKitties',
+            palletRpc: 'kitties',
             callable: 'transfer',
             inputParams: [formValue.target, kitty.id],
             paramFields: [true, true],
@@ -122,7 +122,7 @@ const SetPrice = props => {
           setStatus={setStatus}
           onClick={confirmAndClose}
           attrs={{
-            palletRpc: 'substrateKitties',
+            palletRpc: 'kitties',
             callable: 'setPrice',
             inputParams: [kitty.id, formValue.target],
             paramFields: [true, true],
@@ -176,7 +176,7 @@ const BuyKitty = props => {
           setStatus={setStatus}
           onClick={confirmAndClose}
           attrs={{
-            palletRpc: 'substrateKitties',
+            palletRpc: 'kitties',
             callable: 'buyKitty',
             inputParams: [kitty.id, kitty.price],
             paramFields: [true, true],
